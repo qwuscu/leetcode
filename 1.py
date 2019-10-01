@@ -1,3 +1,5 @@
+from typing import List
+
 class Solution:
     # def twoSum(self, nums: List[int], target: int) -> List[int]:
     #     for i in range(len(nums)-1):
@@ -6,8 +8,7 @@ class Solution:
     #                 return [i, j]
     #     return [0, 0]
 
-
-    def twoSum(self, nums, target):
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         mapping = {}
         for i in range(len(nums)):
             tmp = target - nums[i]
