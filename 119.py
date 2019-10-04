@@ -8,3 +8,22 @@ class Solution:
                  nums[j] = res[num-1][j-1] + res[num-1][j]
             res.append(nums)
         return res
+
+
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        res = []
+        for row in range(rowIndex+1):
+            res.insert(0, 1)
+            for i in range(1, len(res)-1):
+                res[i] = res[i+1] + res[i]
+        return res
+
+
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        res = [1]
+        for _ in range(rowIndex):
+            res = [x + y for x, y in zip([0] + res, res + [0])]
+        return res
+        
