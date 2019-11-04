@@ -14,5 +14,6 @@ class Solution:
             max_profit = max(max_profit, prices[i] - min_cost)
         return max_profit
 
+
 if __name__ == "__main__":
     print(Solution().maxProfit([7, 1, 5, 3, 6, 4]))
