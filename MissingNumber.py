@@ -3,11 +3,10 @@ class Solution:
         lookup = {}
         n = len(nums)
         for num in nums:
-            lookup[num] = 1
-        for i in range(len(nums)):
+            lookup[num] = lookup.get(num, 0) + 1
+        for i in range(n+1):
             if i not in lookup:
                 return i
-        return len(nums)
 
 # wrong answer, Time Limit Exceeded
 class Solution:
