@@ -30,11 +30,14 @@ class Solution:
     def missingNumber(self, nums: List[int]) -> int:
     # put nums[i] into nums[nums[i]]
     # then iterate whole array, first nums[index] != index is the ans
-    # o(N) time o(1) space 
-    
+    # o(N) time o(1) space
+
         n = len(nums)
         i = 0
+        # can't do i<=n, when i=n, it's list index out of range
         while i < n:
+            # need to double check, if nums[i]=n, will be list index out of range
+            # use while, not if. need to loop unitl nums[i]=i
             while nums[i] != i and nums[i] < n:
                 t = nums[i]
                 nums[i] = nums[t]
