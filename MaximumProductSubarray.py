@@ -33,6 +33,43 @@ class Solution:
             prev_pos_largest = cur_pos_largest
         return result
 
+# one pass
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+    #Approach : One pass
+    #Time : O(n)
+    #Space : O(1)
+        if len(nums) == 0: return 0
+        max_so_far = nums[0]
+        min_so_far = nums[0]
+        result = max_so_far
+        for num in nums[1:]:
+            tmp_max = max(num, max_so_far*num, min_so_far*num)
+            min_so_far = min(num, max_so_far*num, min_so_far*num)
+            max_so_far = tmp_max
+            result = max(max_so_far, result)
+        return result
+
+
+ # brute force
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        #Approach : Brute Force
+        #Time : O(n^2)
+        #Space : O(1)
+
+        if len(nums) == 0:
+            return 0
+
+        result = nums[0]
+        n = len(nums)
+        for i in range(n):
+            accu = 1
+            for j in range(i, n):
+                accu *= nums[j]
+                result = max(result, accu)
+
+        return result
 
 if __name__ == "__main__":
     print(Solution().maxProduct([-2,0,-1,-6,2,-5,-4]))
