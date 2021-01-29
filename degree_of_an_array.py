@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def findShortestSubArray(self, nums: List[int]) -> int:
         lookup = {}
@@ -19,7 +22,7 @@ class Solution:
 
 
 
-from collections import Counter 
+from collections import Counter
 
 
 class Solution:
@@ -40,3 +43,28 @@ class Solution:
         return ans
 
         # return min(last[v] - first[v] + 1 for v in c if c[v] == degree)
+
+
+class Solution:
+    def findShortestSubArray(self, nums: List[int]) -> int:
+        from collections import Counter
+        count = Counter(nums)
+        most = count.most_common(1)[0][1]
+        lookup = {}
+        n = len(nums)
+        for i in range(n):
+            if nums[i] not in lookup:
+                lookup[nums[i]] = [i]
+            else:
+                lookup[nums[i]].append(i)
+        '''
+        也可以用 max(lookup.values())来算出出现最多的次数
+        '''
+        ans = len(nums)
+        for key in lookup:
+            if len(lookup[key]) == most:
+                ans = min(ans, lookup[key][-1]-lookup[key][0]+1)
+        return ans
+
+
+print(Solution().findShortestSubArray([1,2,2,3,1]))
