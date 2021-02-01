@@ -44,6 +44,16 @@ class Solution:
 
 
 class Solution:
+    '''
+    我倒是觉得，这题就掌握两个思想：
+    1. 将3Sum退化成2Sum: for 循环每次固定好第一个数，剩下的问题不就是基础的2 Sum问题吗。
+    2. 去重: 数组sort的以后，第一层的去重基本是模板了。
+    因为这题比较特殊是3Sum, 意味着只要第二层不重复，第三层也不会重复。
+    所以在第二层也就是while循环那里套用第一层的去重方法就好了。
+
+    时间复杂度 O(n^2) 空间 O(1)
+    '''
+
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         if len(nums) < 3: return []
         nums.sort()
