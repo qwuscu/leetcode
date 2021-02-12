@@ -23,3 +23,15 @@ class Solution:
         return max(min1*min2*max1, max1*max2*max3)
     # time: O(n)
     # space: O(1)
+
+
+from typing import List
+
+class Solution:
+    def maximumProduct(self, nums: List[int]) -> int:
+    #  Time complexity : O(nlogn). Sorting the numsnums array takes nlogn time.
+    # Space complexity : O(logn). Sorting takes O(logn) space.
+        nums.sort()
+        ans1 = nums[-1]*nums[-2]*nums[-3]
+        ans2 = nums[0]*nums[1]*nums[-1]
+        return max(ans1, ans2)
