@@ -1,0 +1,30 @@
+class Solution:
+    def isLongPressedName(self, name: str, typed: str) -> bool:
+        i, j = 0, 0
+        while i < len(name) and j < len(typed):
+            if name[i] == typed[j]:
+                i += 1
+                j += 1
+            # need to check if j==j-1 to make sure no other character is there
+            # e.g. "alex", "aaleelx"
+            # j has to be >= 1, fail at "zlexya", "aazlllllllllllllleexxxxxxxxxxxxxxxya"
+            elif j >= 1 and typed[j] == typed[j-1]:
+                j += 1
+            else:
+                return False 
+        
+        # if there is still unmatched character left in name, then no match
+        if i != len(name):
+            return False 
+        else:
+            # in the case that there are some redundant characters left in typed, 
+            # we still get a match, e.g., 'abc', 'abccc'
+            # but if there are other charcaters, then no match
+            # e.g., 'alex', 'aaleexa'
+            while j < len(typed):
+                if typed[j] != typed[j-1]:
+                    return False
+                j += 1
+        
+        # both strings have been consumed
+        return True
