@@ -1,0 +1,27 @@
+class Solution:
+    def longestOnes(self, A: List[int], K: int) -> int:
+    '''
+    We use 2 pointers (sliding window) to solve this question.
+    We keep incrementing the variable j until it reaches end of vector.
+    i acts as starting of window and j acts as end of window.
+    (j-i+1) gives the length of window
+    '''               
+        i, j = 0, 0
+        ans, zeros = 0, 0
+        while j < len(A):
+            if A[j] == 0:
+                zeros += 1
+            
+            if zeros <= K:
+                ans = max(ans, j-i+1)
+            
+            elif zeros > K:
+                while zeros > K:
+                    if A[i] == 0:
+                        zeros -= 1
+                    i += 1
+                ans = max(ans, j-i+1)
+            j += 1
+        return ans
+
+                        
